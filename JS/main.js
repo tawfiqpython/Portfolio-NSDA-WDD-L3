@@ -8,8 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
+  // Full live date & time in footer
+  const datetimeEl = document.getElementById("year");
+  function updateDateTime() {
+    if (!datetimeEl) return;
+    const now = new Date();
+    datetimeEl.textContent = now.toLocaleString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  }
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
 
   document.querySelectorAll(".site-navbar .nav-link, .site-navbar .btn").forEach((item) => {
     item.addEventListener("click", () => {
